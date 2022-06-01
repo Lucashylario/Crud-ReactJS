@@ -1,19 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Axios from 'axios';
+import { CardProducts } from './CardProducts';
 
 export const Product = () => {
-    const [values, setValues] = useState();
-    
-    const handleChangeValue = (value) => {
-        setValues(prevValue => ({
-            ...prevValue,
-            [value.target.name]: value.target.value,
-        }));
-    };
-    
-    const handleClickButton = () => {
-        console.log(values);
-    }
-
     return (
         <div className="table-row w-full">
             <header className="w-[100%] h-28 pt-5 pl-8 bg-slate-100 shadow-lg text-black ">
@@ -52,6 +41,17 @@ export const Product = () => {
                         onClick={() => handleClickButton()}>Cadastrar</button>
                 
                 </div>
+                { typeof listProducts !== "undefined" && listProducts.map((values) => {
+                    return <CardProducts 
+                        key={value.id} 
+                        listCard={listProducts} 
+                        setListCard={setListProducts} 
+                        id={value.id}
+                        name={value.name}
+                        price={value.price}
+                        marca={value.marca}
+                        />;
+                })}
             </div>
         </div>
     )

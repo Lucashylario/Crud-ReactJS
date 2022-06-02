@@ -18,3 +18,6 @@
 - Canal: ProgrAmada Mente
 - 1. REACTjs + BOOTSTRAP 5 - CRUD Completo - Parte 01
 `https://www.youtube.com/watch?v=4sQhe7SEWsU`
+
+- 2. REACTjs + BOOTSTRAP 5 - CRUD Completo - Parte 02
+`https://www.youtube.com/watch?v=59OZgAYKOa8`

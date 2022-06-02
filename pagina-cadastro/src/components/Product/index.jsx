@@ -1,16 +1,23 @@
 import { useState } from "react";
+// import iconBaixa from '../../assets/priority-baixa.png';
+// import iconNormal from '../../assets/priority-normal.png';
+import iconAlta from '../../assets/priority-alta.png';
 
 let initialState = [
     {
         id: 1,
-        nome: 'Tenis',
+        produto: 'Tenis',
+        prioridade: "Alta",
         marca: 'Adidas',
+        estoque: '20',
         preco: '220,00',
     },
     {
         id: 2,
-        nome: 'Camiseta',
+        produto: 'Camiseta',
+        prioridade: "Alta",
         marca: 'Nike',
+        estoque: '5',
         preco: '189,90',
     },
 ];
@@ -30,9 +37,11 @@ export const Product = () => {
         event.preventDefault();
 
         const product = {
-            nome: document.getElementById('nome').value,
+            produto: document.getElementById('produto').value,
             marca: document.getElementById('marca').value,
+            estoque: document.getElementById('estqoue').value,
             preco: document.getElementById('preco').value,
+            prioridade: document.getElementById('prioridade').value,
         };
 
         setCadProd([ ...cadProd, { ...product }]);
@@ -54,8 +63,8 @@ export const Product = () => {
                     <input 
                         id="nome"
                         type="text" 
-                        name="nome" 
-                        placeholder="Nome" 
+                        name="produto" 
+                        placeholder="Produto" 
                         className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
                     />
 
@@ -66,6 +75,14 @@ export const Product = () => {
                         placeholder="Marca" 
                         className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
                     />
+                    
+                    <input 
+                        id="estoque"
+                        type="text" 
+                        name="estoque" 
+                        placeholder="Estoque" 
+                        className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
+                    />
 
                     <input 
                         id="preco"
@@ -74,6 +91,17 @@ export const Product = () => {
                         placeholder="Preço" 
                         className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
                     />
+
+                    <div>
+                        <label className="text-xl text-slate-600 ml-4 mr-5">
+                            Prioridade do Produto: 
+                        </label>
+                        <select name="priority" id="prioridade" className="px-6 py-2 rounded-lg font-semibold border-2 border-slate-500 text-slate-600">
+                            <option value="1">Baixa</option>
+                            <option value="2">Norma</option>
+                            <option value="3">Alta</option>
+                        </select>
+                    </div>
                 
                     <button 
                         className='
@@ -91,18 +119,44 @@ export const Product = () => {
                 </form>
 
                 <div>
-                    <div className="grid grid-cols-3 pl-3 mb-3 text-xl font-semibold">
+                    <div className="grid grid-cols-4 pl-3 mb-3 text-xl font-semibold">
                         <h3>Nome</h3>
                         <h3>Marca</h3>
+                        <h3>Estoque</h3>
                         <h3>Preço</h3>
                     </div>
 
                     {cadProd.map(prod => (
-                        <ul className="grid grid-cols-3 mb-2 shadow-md" key={prod.id}>
-                            <li className="border-2 p-2" >{prod.nome}</li>
-                            <li className="border-2 p-2" >{prod.marca}</li>
-                            <li className="border-2 p-2" >{prod.preco}</li>
-                        </ul>
+                        <div className="mb-3 border-2" key={prod.id}>
+                            <div className="justify-between flex mb-3 p-2">
+                                <h5>
+                                    <span className="rounded-3xl px-[.4rem] ml-2 text-white bg-slate-600" >
+                                        {prod.id}
+                                    </span> - {prod.produto}
+                                </h5>
+                                <h6 className="flex mr-2">
+                                    Prioridade: <img src={iconAlta} alt="emoji triste" className="w-6 mx-1" /> 
+                                    {prod.prioridade}
+                                </h6>
+                            </div>
+
+                            <ul className="grid grid-cols-4">
+                                <li className="border-2 p-2" >{prod.produto}</li>
+                                <li className="border-2 p-2" >{prod.marca}</li>
+                                <li className="border-2 p-2" >{prod.estoque}</li>
+                                <li className="border-2 p-2" >{prod.preco}</li>
+                            </ul>
+
+                            <div className=" justify-end flex p-2 ">
+                                <button className="px-20 py-3 mr-3 border-2 border-green-600 text-green-600 rounded-xl hover:bg-green-600 hover:text-slate-100 font-semibold">
+                                    Editar
+                                </button>
+
+                                <button className="px-20 py-3 border-2 border-red-600 text-red-600 rounded-xl hover:bg-red-600 hover:text-slate-100 font-semibold">
+                                    Deletar
+                                </button>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>

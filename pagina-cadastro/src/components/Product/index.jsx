@@ -1,24 +1,32 @@
 import { useState } from "react";
-// import iconBaixa from '../../assets/priority-baixa.png';
-// import iconNormal from '../../assets/priority-normal.png';
+import iconBaixa from '../../assets/priority-baixa.png';
+import iconNormal from '../../assets/priority-normal.png';
 import iconAlta from '../../assets/priority-alta.png';
 
 let initialState = [
     {
         id: 1,
         produto: 'Tenis',
-        prioridade: "Alta",
         marca: 'Adidas',
         estoque: '20',
         preco: '220,00',
+        prioridade: 'baixa',
     },
     {
         id: 2,
         produto: 'Camiseta',
-        prioridade: "Alta",
         marca: 'Nike',
         estoque: '5',
         preco: '189,90',
+        prioridade: 'normal',
+    },
+    {
+        id: 3,
+        produto: 'Meia',
+        marca: 'Nike',
+        estoque: '2',
+        preco: '18,90',
+        prioridade: 'alta',
     },
 ];
 
@@ -37,14 +45,42 @@ export const Product = () => {
         event.preventDefault();
 
         const product = {
+            id: document.getElementById('id').value,
             produto: document.getElementById('produto').value,
             marca: document.getElementById('marca').value,
-            estoque: document.getElementById('estqoue').value,
+            estoque: document.getElementById('estoque').value,
             preco: document.getElementById('preco').value,
             prioridade: document.getElementById('prioridade').value,
         };
 
         setCadProd([ ...cadProd, { ...product }]);
+    }
+
+    function prioridadeLabel(param) {
+        switch(param) {
+            case 'baixa':
+                return 'Baixa';
+            case 'normal':
+                return 'Normal';
+            case 'alta':
+                return 'Alta';
+        }
+    }
+
+    function prioridadeIcon(param, icone) {
+        switch(param) {
+            case 'baixa':
+                return icone ? iconBaixa : 'green-600';
+            case 'normal':
+                return icone ? iconNormal : 'yellow-400 text-yellow-400 border-yellow-400';
+            case 'alta':
+                return icone ? iconAlta : 'red-600';
+        }
+    }
+
+    function deletProduct(id) {
+        const produtosFiltrados = cadProd.filter(product => product.id !== id);
+        setCadProd([...produtosFiltrados])
     }
 
     return (
@@ -61,7 +97,15 @@ export const Product = () => {
             <div className="w-[95%] p-10 mx-auto mt-5 bg-slate-100 shadow-lg">
                 <form className="grid gap-3 justify-center mb-10">
                     <input 
-                        id="nome"
+                        type="text" 
+                        className="hidden"
+                        id="id"  
+                        readOnly
+                        value={Math.max.apply(Math, cadProd.map(item => item.id))  + 1}
+                    />
+
+                    <input 
+                        id="produto"
                         type="text" 
                         name="produto" 
                         placeholder="Produto" 
@@ -96,10 +140,10 @@ export const Product = () => {
                         <label className="text-xl text-slate-600 ml-4 mr-5">
                             Prioridade do Produto: 
                         </label>
-                        <select name="priority" id="prioridade" className="px-6 py-2 rounded-lg font-semibold border-2 border-slate-500 text-slate-600">
-                            <option value="1">Baixa</option>
-                            <option value="2">Norma</option>
-                            <option value="3">Alta</option>
+                        <select id="prioridade" className="px-6 py-2 rounded-lg font-semibold border-2 border-slate-500 text-slate-600">
+                            <option value="baixa">Baixa</option>
+                            <option value="normal">Normal</option>
+                            <option value="alta">Alta</option>
                         </select>
                     </div>
                 
@@ -120,31 +164,36 @@ export const Product = () => {
 
                 <div>
                     <div className="grid grid-cols-4 pl-3 mb-3 text-xl font-semibold">
-                        <h3>Nome</h3>
+                        <h3>Produto</h3>
                         <h3>Marca</h3>
                         <h3>Estoque</h3>
                         <h3>Preço</h3>
                     </div>
 
                     {cadProd.map(prod => (
-                        <div className="mb-3 border-2" key={prod.id}>
+                        <div key={prod.id} className={"mb-5 shadow-lg rounded-lg border-2 border-" + prioridadeIcon(prod.prioridade)} >
                             <div className="justify-between flex mb-3 p-2">
                                 <h5>
                                     <span className="rounded-3xl px-[.4rem] ml-2 text-white bg-slate-600" >
                                         {prod.id}
-                                    </span> - {prod.produto}
+                                    </span>
                                 </h5>
-                                <h6 className="flex mr-2">
-                                    Prioridade: <img src={iconAlta} alt="emoji triste" className="w-6 mx-1" /> 
-                                    {prod.prioridade}
+                                <h6 className="flex mr-2 font-bold">
+                                    <h3 className="text-black">
+                                        Prioridade:
+                                    </h3>
+                                    <span className={"flex text-" + prioridadeIcon(prod.prioridade)}>
+                                        <img src={prioridadeIcon(prod.prioridade, true)} alt="emoji triste" className="w-6 mx-1" /> 
+                                        {prioridadeLabel(prod.prioridade)}
+                                    </span>
                                 </h6>
                             </div>
 
-                            <ul className="grid grid-cols-4">
-                                <li className="border-2 p-2" >{prod.produto}</li>
-                                <li className="border-2 p-2" >{prod.marca}</li>
-                                <li className="border-2 p-2" >{prod.estoque}</li>
-                                <li className="border-2 p-2" >{prod.preco}</li>
+                            <ul className="grid grid-cols-4 font-semibold text-slate-800">
+                                <li className="border-y-2 border-slate-400 border-r-2 py-1 pl-3">{prod.produto}</li>
+                                <li className="border-y-2 border-slate-400 py-1 pl-3" >{prod.marca}</li>
+                                <li className="border-2 py-1 pl-3 border-slate-400">{prod.estoque}</li>
+                                <li className="border-y-2 border-slate-400 py-1 pl-3" >{prod.preco}</li>
                             </ul>
 
                             <div className=" justify-end flex p-2 ">
@@ -152,7 +201,9 @@ export const Product = () => {
                                     Editar
                                 </button>
 
-                                <button className="px-20 py-3 border-2 border-red-600 text-red-600 rounded-xl hover:bg-red-600 hover:text-slate-100 font-semibold">
+                                <button 
+                                    onClick={() => deletProduct(prod.id)}
+                                    className="px-20 py-3 border-2 border-red-600 text-red-600 rounded-xl hover:bg-red-600 hover:text-slate-100 font-semibold">
                                     Deletar
                                 </button>
                             </div>

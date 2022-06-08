@@ -12,6 +12,7 @@ let initialState = [
         estoque: '20',
         preco: '220,00',
         prioridade: 'baixa',
+        descricao: 'Tenis Adidas Original - Modelo: Superstar',
     },
     {
         id: 2,
@@ -20,6 +21,7 @@ let initialState = [
         estoque: '5',
         preco: '189,90',
         prioridade: 'normal',
+        descricao: 'Camiseta estampada Nike de algodão original.',
     },
     {
         id: 3,
@@ -28,6 +30,7 @@ let initialState = [
         estoque: '2',
         preco: '18,90',
         prioridade: 'alta',
+        descricao: 'Meia de algodão original Nike cano longo.',
     },
 ];
 
@@ -42,29 +45,35 @@ export const Product = () => {
     ]
     
     const [cadProd, setCadProd] = useState(initialState);
+    const [editProd, setEditProd] = useState({});
+
     function handleFormProducts(event) {
         event.preventDefault();
 
         const product = {
-            id: document.getElementById('id').value,
+            id: Math.max.apply(Math, cadProd.map(item => item.id))  + 1,
             produto: document.getElementById('produto').value,
             marca: document.getElementById('marca').value,
             estoque: document.getElementById('estoque').value,
             preco: document.getElementById('preco').value,
             prioridade: document.getElementById('prioridade').value,
+            descricao: document.getElementById('descricao').value,
         };
 
         setCadProd([ ...cadProd, { ...product }]);
     }
 
-    
-
-    
-
     function deletProduct(id) {
         const produtosFiltrados = cadProd.filter(product => product.id !== id);
         setCadProd([...produtosFiltrados])
     }
+    
+
+    function editarProduct(id) {
+        const editProduct = cadProd.filter((product) => product.id === id);
+        setEditProd(editProduct[0])
+    }
+
 
     return (
         <div className="table-row w-full">
@@ -81,19 +90,18 @@ export const Product = () => {
                  
                  <ProductForm 
                     handleFormProducts={handleFormProducts}
+                    produtoSelecionado={editProd}
                     cadProd={cadProd}
                  />
 
                 <div>
-                    <div className="grid grid-cols-4 pl-3 mb-3 text-xl font-semibold">
-                        <h3>Produto</h3>
-                        <h3>Marca</h3>
-                        <h3>Estoque</h3>
-                        <h3>Preço</h3>
-                    </div>
-
                     {cadProd.map((prod) => ( 
-                        <ProductCard key={prod.id} prod={prod} deletProduct={deletProduct}/>
+                        <ProductCard 
+                            key={prod.id} 
+                            prod={prod} 
+                            editarProduct={editarProduct}
+                            deletProduct={deletProduct}
+                        />
                     ))}
                 </div>
             </div>

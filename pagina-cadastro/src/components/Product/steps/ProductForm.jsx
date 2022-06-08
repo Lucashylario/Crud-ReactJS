@@ -1,52 +1,78 @@
+import { useState } from "react"
+
 export default function ProductForm(props) {
+
+    const [product, setProduct] = useState({});
+
+    const inputTextHandler = (e) => {
+        const {name, value} = e.target;
+
+        setProduct({...product, [name]: value})
+    }
+
     return (
-        <>
+        <div>
             <form className="grid gap-3 justify-center mb-10">
                 <input 
-                    type="text" 
-                    className="hidden"
-                    id="id"  
-                    readOnly
-                    value={Math.max.apply(Math, props.cadProd.map(item => item.id))  + 1}
-                />
-
-                <input 
+                    name="produto" 
+                    value={product.produto}
+                    onChange={inputTextHandler}
                     id="produto"
                     type="text" 
-                    name="produto" 
                     placeholder="Produto" 
                     className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
                 />
 
                 <input 
+                    name="marca"
+                    value={product.marca}
+                    onChange={inputTextHandler} 
                     id="marca"
                     type="text" 
-                    name="marca" 
                     placeholder="Marca" 
                     className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
                 />
                 
                 <input 
+                    name="estoque" 
+                    value={product.estoque}
+                    onChange={inputTextHandler}
                     id="estoque"
                     type="text" 
-                    name="estoque" 
                     placeholder="Estoque" 
                     className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
                 />
 
                 <input 
+                    name="preco" 
+                    value={product.preco}
+                    onChange={inputTextHandler}
                     id="preco"
                     type="text" 
-                    name="preco" 
                     placeholder="Preço" 
                     className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
+                />
+
+                <textarea 
+                    name="descricao"
+                    value={product.descricao}
+                    id="descricao"
+                    type="text"
+                    className='bg-slate-200 w-96 p-3 text-xl rounded-2xl border-2 border-slate-500' 
+                    placeholder="Descrição do produto"
                 />
 
                 <div>
                     <label className="text-xl text-slate-600 ml-4 mr-5">
                         Prioridade do Produto: 
                     </label>
-                    <select id="prioridade" className="px-6 py-2 rounded-lg font-semibold border-2 border-slate-500 text-slate-600">
+                    <select 
+                        name="prioridade"
+                        value={product.prioridade}
+                        onChange={inputTextHandler}
+                        id="prioridade" 
+                        className="px-6 py-2 rounded-lg font-semibold border-2 border-slate-500 text-slate-600"
+                    >
                         <option value="baixa">Baixa</option>
                         <option value="normal">Normal</option>
                         <option value="alta">Alta</option>
@@ -67,6 +93,6 @@ export default function ProductForm(props) {
                     onClick={props.handleFormProducts}
                 >Cadastrar</button>
             </form>
-        </>
+        </div>
     )
 }

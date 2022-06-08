@@ -1,13 +1,34 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+const productInicial= {
+    id: 0,
+    produto: '',
+    marca: '',
+    estoque: '',
+    descricao: '',
+    prioridade: 0
+}
 
 export default function ProductForm(props) {
-
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState(produtoAtual());
+    useEffect(() => {
+        if(props.produtoSelecionado.id !== 0)
+            setProduct(props.produtoSelecionado);
+    }, [props.produtoSelecionado]);
 
     const inputTextHandler = (e) => {
         const {name, value} = e.target;
 
         setProduct({...product, [name]: value})
+    }
+
+    function produtoAtual() {
+        if (props.produtoSelecionado.id !== 0) {
+            return props.produtoSelecionado;
+        }
+        else {
+            return produtoInicial;
+        }
     }
 
     return (

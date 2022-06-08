@@ -53,10 +53,10 @@
 - **00:01:39 - AtividadeLista**
 - **00:06:15 - Editar - Parte 01**
 - **00:12:52 - onChange InputHandler**
-- **00:22:52 - Fazendo Exercício** <=
+- **00:22:52 - Fazendo Exercício** 
 - **00:25:25 - Hook useEffect**
 - **00:33:03 - useEffect**
-- **00:38:58 - Cancelar Atividade**
+- **00:38:58 - Cancelar Atividade** <=
 - **00:47:16 - Editar - Parte 2**
 - **00:56:36 - Editar - Parte 3**
 - **01:02:29 - Editar - Parte 4**

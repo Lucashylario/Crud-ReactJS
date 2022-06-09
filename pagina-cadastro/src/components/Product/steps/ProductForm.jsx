@@ -31,6 +31,12 @@ export default function ProductForm(props) {
         }
     }
 
+    const handleCancelar = (e) => {
+        e.preventDefault();
+
+        setProduct(productInicial);
+    }
+
     return (
         <div>
             <form className="grid gap-3 justify-center mb-10">
@@ -99,20 +105,25 @@ export default function ProductForm(props) {
                         <option value="alta">Alta</option>
                     </select>
                 </div>
-            
-                <button 
-                    className='
-                        w-80 
-                        bg-slate-900 
-                        mx-auto 
-                        text-white 
-                        px-10 
-                        py-3 
-                        rounded-3xl 
-                        hover:bg-blue-900
-                        '
-                    onClick={props.handleFormProducts}
-                >Cadastrar</button>
+
+                {
+                    product.id === 0 ? (
+                    <button 
+                        className='w-80 bg-slate-900 mx-auto text-white px-10 py-3 rounded-3xl hover:bg-slate-600'
+                        onClick={props.handleFormProducts}
+                    >Cadastrar</button> )
+                    : (
+                    <>
+                        <button 
+                            className='w-80 bg-green-800 mx-auto text-white px-10 py-3 rounded-3xl hover:bg-green-700'
+                            type="submit">Salvar</button>
+
+                        <button 
+                            className=' w-80 bg-yellow-800 mx-auto text-white px-10 py-3 rounded-3xl hover:bg-yellow-500'
+                            onClick={handleCancelar}>Cancelar</button>
+                    </> )
+                }
+
             </form>
         </div>
     )

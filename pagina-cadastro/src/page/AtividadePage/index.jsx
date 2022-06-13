@@ -1,11 +1,11 @@
+import { Atividade } from "../../components/Atividade"
 import { NavBar } from "../../components/NavBar"
-import { Product } from "../../components/Product"
 
-export const ProductsPage = () => {
+export const AtividadePage = () => {
     return (
         <div className="bg-slate-200 flex">
             <NavBar />
-            <Product />
+            <Atividade />
         </div>
     )
 }

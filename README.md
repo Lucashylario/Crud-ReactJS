@@ -18,14 +18,6 @@
 - Canal: ProgrAmada Mente
 - 1. REACTjs + BOOTSTRAP 5 - CRUD Completo - Parte 01
 `https://www.youtube.com/watch?v=4sQhe7SEWsU`
-- **00:00:00 - Oi e Obrigado!**
-- **00:04:00 - O que Faremos**
-- **00:06:00 - Criando Projeto**
-- **00:16:23 - Explicando o Projeto**
-- **00:26:26 - JSX**
-- **00:31:42 - JSX - Fragment**
-- **00:34:31 - Install Bootstrap**
-- **00:44:02 - Primeiros Estilos**
 - **00:49:10 - Atividade Map**
 - **00:56:19 - AddAtividade**
 - **01:04:55 - Hook useState**
@@ -34,7 +26,6 @@
 
 - 2. REACTjs + BOOTSTRAP 5 - CRUD Completo - Parte 02
 `https://www.youtube.com/watch?v=59OZgAYKOa8`
-- **00:00 - Oi e Obrigado!**
 - **01:32 - Título Card**
 - **08:17 - FontAwesome**
 - **16:00 - Botões Editar e Deletar**

@@ -56,11 +56,24 @@ export const Atividade = () => {
                 <form className="bg-slate-50 p-5 shadow-lg">
                     <div className="grid grid-cols-2">
                         <div className="w-full max-w-lg px-5 grid">
-                            <label className="text-slate-500" htmlFor="id">ID:</label>
+                            <label className="text-slate-500">ID:</label>
                             <input id="id" type="text" placeholder="Insira um ID" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
                         </div>
                         <div className="w-full max-w-lg px-5 grid">
-                            <label className="text-slate-500" htmlFor="descicao">Descrição:</label>
+                            <label className="text-slate-500">Prioridade:</label>
+                            <select id="prioridade" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg">
+                                <option defaultValue="selectPrioridade">Selecione...</option>
+                                <option value="baixo">Baixa</option>
+                                <option value="normal">Normal</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                        </div>
+                        <div className="w-full max-w-lg px-5 grid">
+                            <label className="text-slate-500">Título:</label>
+                            <input id="titulo" type="text" placeholder="Digite um título" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
+                        </div>
+                        <div className="w-full max-w-lg px-5 grid">
+                            <label className="text-slate-500">Descrição:</label>
                             <input id="descricao" type="text" placeholder="Descreva sua atividade" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
                         </div>
                     </div>

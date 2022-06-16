@@ -1,13 +1,36 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
+
+const atividadeInicial = {
+    id: 0,
+    titulo: '',
+    prioridade: 0,
+    descricao: ''
+}
+
 export const AtividadeForm = (props) => {
-    const [atividade, setAtividade] = useState({})
+    const [atividade, setAtividade] = useState(atividadeAtual());
+    
+    useEffect(() => {
+        if(props.ativSelecionada.id !== 0)
+            setAtividade(props.ativSelecionada);
+    }, [props.ativSelecionada])
 
     // Método onChange do input para pegar valores digitados
     const inputTextHandler = (e) => {
         const {name, value} = e.target;
 
         setAtividade({...atividade, [name]: value})
+    }
+
+    function atividadeAtual() {
+        if (props.ativSelecionada.id !== 0) {
+            return props.ativSelecionada;
+        }
+        else {
+            return atividadeInicial;
+        }
     }
 
     // Estrutura do formulário

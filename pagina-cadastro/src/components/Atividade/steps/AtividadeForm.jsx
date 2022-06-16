@@ -1,36 +1,41 @@
+import { useState } from "react";
+
 export const AtividadeForm = (props) => {
+    const [atividade, setAtividade] = useState({})
+
+    // Método onChange do input para pegar valores digitados
+    const inputTextHandler = (e) => {
+        const {name, value} = e.target;
+
+        setAtividade({...atividade, [name]: value})
+    }
+
+    // Estrutura do formulário
     return (
         <form className="bg-slate-50 p-5 shadow-lg">
             <div className="grid grid-cols-2">
                 <div className="w-full max-w-lg px-5 grid">
-                    <label className="text-slate-500">ID:</label>
-                    <input 
-                        id="id" 
-                        type="text" 
-                        placeholder="Insira um ID" 
-                        className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" 
-                        readOnly
-                        value={Math.max.apply(Math, props.atividades.map(item => item.id)) + 1}
-                    />
+                    <label className="text-slate-500">Título:</label>
+                    <input id="titulo" name="titulo" value={atividade.titulo} onChange={inputTextHandler} type="text" placeholder="Digite um título" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
                 </div>
+
                 <div className="w-full max-w-lg px-5 grid">
                     <label className="text-slate-500">Prioridade:</label>
-                    <select id="prioridade" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg">
+                    <select id="prioridade" name="prioridade" value={atividade.prioridade} onChange={inputTextHandler} className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg">
                         <option defaultValue="0">Selecione...</option>
                         <option value="1">Baixa</option>
                         <option value="2">Normal</option>
                         <option value="3">Alta</option>
                     </select>
                 </div>
-                <div className="w-full max-w-lg px-5 grid">
-                    <label className="text-slate-500">Título:</label>
-                    <input id="titulo" type="text" placeholder="Digite um título" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
-                </div>
+
                 <div className="w-full max-w-lg px-5 grid">
                     <label className="text-slate-500">Descrição:</label>
-                    <input id="descricao" type="text" placeholder="Descreva sua atividade" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
+                    <textarea id="descricao" name="descricao" value={atividade.descricao} onChange={inputTextHandler} type="text" placeholder="Descreva sua atividade" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
                 </div>
+
             </div>
+            
             <div className="w-full flex justify-center">
                 <button 
                     onClick={props.addAtividade} 

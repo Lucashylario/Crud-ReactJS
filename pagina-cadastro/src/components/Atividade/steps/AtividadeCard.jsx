@@ -2,6 +2,8 @@ import prioridadeBaixaIcon from '../../../assets/priority-baixa.png';
 import prioridadeNormalIcon from '../../../assets/priority-normal.png';
 import prioridadeAltaIcon from '../../../assets/priority-alta.png';
 
+import { FaPen, FaRegTrashAlt } from "react-icons/fa";
+
 export const AtividadeCard = (props) => {
     
     // Função para selecionar prioridade do form
@@ -50,9 +52,13 @@ export const AtividadeCard = (props) => {
                 </p>
             </div>
             <div className="justify-end flex gap-2">
-                <button onClick={() => props.pegarAtividade(props.ativ.id)} className="px-5 py-2 border rounded-lg text-blue-700 border-blue-800 hover:bg-blue-700 hover:text-blue-200">Editar</button>
+                <button onClick={() => props.pegarAtividade(props.ativ.id)} className="px-5 py-2 flex gap-1 items-center border rounded-lg text-blue-700 border-blue-800 hover:bg-blue-700 hover:text-blue-200">
+                    <FaPen />Editar
+                </button>
                 
-                <button onClick={() => props.deletarAtividade(props.ativ.id)} className="px-5 py-2 border rounded-lg text-red-700 border-red-700 hover:bg-red-700 hover:text-red-200">Deletar</button>
+                <button onClick={() => props.deletarAtividade(props.ativ.id)} className="px-5 py-2 flex gap-1 items-center border rounded-lg text-red-700 border-red-700 hover:bg-red-700 hover:text-red-200">
+                    <FaRegTrashAlt /> Deletar
+                </button>
             </div>
         </div>
     )

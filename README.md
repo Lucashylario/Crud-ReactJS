@@ -48,7 +48,7 @@
 - **00:25:25 - Hook useEffect**
 - **00:33:03 - useEffect** 
 - **00:38:58 - Cancelar Atividade** 
-- **00:47:16 - Editar - Parte 2**
+- **00:47:16 - Editar - Parte 2** <>
 - **00:56:36 - Editar - Parte 3**
 - **01:02:29 - Editar - Parte 4**
 - **01:07:12 - Enviando ao GIT**

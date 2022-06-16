@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-
+import { FaPlus, FaCheck, FaTimes } from "react-icons/fa";
 
 const atividadeInicial = {
     id: 0,
@@ -61,12 +61,10 @@ export const AtividadeForm = (props) => {
                         <option value="3">Alta</option>
                     </select>
                 </div>
-
-                <div className="w-full max-w-lg px-5 grid">
-                    <label className="text-slate-500">Descrição:</label>
-                    <textarea id="descricao" name="descricao" value={atividade.descricao} onChange={inputTextHandler} type="text" placeholder="Descreva sua atividade" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
-                </div>
-
+            </div>
+            <div className="w-full px-5 grid">
+                <label className="text-slate-500">Descrição:</label>
+                <textarea id="descricao" name="descricao" value={atividade.descricao} onChange={inputTextHandler} type="text" placeholder="Descreva sua atividade" className="mb-5 text-slate-800 bg-slate-200 p-3 rounded-lg" />
             </div>
             
             <div className="w-full flex justify-center">
@@ -74,56 +72,18 @@ export const AtividadeForm = (props) => {
                     atividade.id === 0 ? // Se o id for igual á 0 aparece o botão abaixo,
                     (<button 
                         onClick={props.addAtividade} 
-                        className="
-                            w-2/5
-                            max-w-sm
-                            bg-slate-200 
-                            text-slate-800 border 
-                            border-slate-800 
-                            hover:bg-slate-800
-                            hover:text-slate-200
-                            hover:shadow-md
-                            hover:shadow-slate-800
-                            py-2 
-                            rounded-lg
-                    ">+ Atividade</button>)
+                        className="font-semibold px-14 flex items-center gap-1 max-w-sm bg-slate-200 text-slate-800 border border-slate-800 hover:bg-slate-800 hover:text-slate-200 hover:shadow-md hover:shadow-slate-800 py-2 rounded-lg">
+                            <FaPlus /> Atividade
+                        </button>)
                     : // Se não aparece os botões abaixo
                     (<>
-                        <button 
-                            type="submit"
-                            className="
-                                w-2/5
-                                max-w-sm
-                                mx-2
-                                font-semibold
-                                bg-slate-200 
-                                text-green-600 border 
-                                border-green-600 
-                                hover:bg-green-600
-                                hover:text-slate-200
-                                hover:shadow-md
-                                hover:shadow-slate-800
-                                py-2 
-                                rounded-lg
-                        ">Salvar</button>
+                        <button type="submit" className="px-10 gap-1 flex items-center max-w-sm mx-2 font-semibold bg-slate-200  text-green-600 border  border-green-600  hover:bg-green-600 hover:text-slate-200 hover:shadow-md hover:shadow-slate-800 py-2 rounded-lg">
+                            <FaCheck className="mt-1" /> Salvar
+                        </button>
 
-                        <button 
-                            onClick={handleCancelar} 
-                            className="
-                                w-2/5
-                                max-w-sm
-                                mx-2
-                                font-semibold
-                                bg-slate-200 
-                                text-red-600 border 
-                                border-red-600 
-                                hover:bg-red-600
-                                hover:text-slate-200
-                                hover:shadow-md
-                                hover:shadow-slate-800
-                                py-2 
-                                rounded-lg
-                        ">Cancelar</button>
+                        <button onClick={handleCancelar} className="px-10 gap-1 flex items-center max-w-sm mx-2 font-semibold bg-slate-200  text-red-600 border  border-red-600  hover:bg-red-600 hover:text-slate-200 hover:shadow-md hover:shadow-slate-800 py-2  rounded-lg">
+                            <FaTimes className="mt-1" /> Cancelar
+                        </button>
                     </>)
                 }
             </div>

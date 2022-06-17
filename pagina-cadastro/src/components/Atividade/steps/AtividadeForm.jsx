@@ -81,7 +81,7 @@ export const AtividadeForm = (props) => {
                 {
                     atividade.id === 0 ? // Se o id for igual á 0 aparece o botão abaixo,
                     (<button 
-                        onClick={props.addAtividade} 
+                        type="submit"
                         className="font-semibold px-14 flex items-center gap-1 max-w-sm bg-slate-200 text-slate-800 border border-slate-800 hover:bg-slate-800 hover:text-slate-200 hover:shadow-md hover:shadow-slate-800 py-2 rounded-lg">
                             <FaPlus /> Atividade
                         </button>)

@@ -48,7 +48,7 @@ export const Atividade = () => {
 
     // Função do botão "+ Atividade" para dicionar nova atividade na lista
     function addAtividade(ativ) {  
-        ativ.preventDefault();     
+        // ativ.preventDefault();     
         setAtividades([...atividades, {...ativ, id: index}]); //[...spread operator] https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_syntax
     }
 

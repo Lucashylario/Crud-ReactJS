@@ -9,7 +9,7 @@
 
 ## Executar para abrir o projeto
 
--`npm init` - Abrir terminal e entrar nas pastaco com o seguinte comando **para executar o npm** `cd backend` & `cd pagina-cadastro`
+-`npm init` - Abrir terminal e entrar nas pastaco com o seguinte comando **para executar o npm** `cd backend` ou `cd pagina-cadastro`
 
 ## Rodar Front end & Back end
 `npm run dev` - Para rodar as aplicaçõe, deve-se entrar na pasta de back, ativar o terminal e digitar o cód. Fazer o mesmo com a pasta do Front.

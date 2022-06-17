@@ -34,18 +34,28 @@ export const AtividadeForm = (props) => {
         }
     }
 
+    // Método para validar edição de atividades pelo form
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(props.ativSelecionada.id !== 0) props.atualizarAtividade(atividade);
+        else props.addAtividade(atividade);
+
+        setAtividade(atividadeInicial);
+    }
+
     // Método do botão de cancelar atividade de edição da atividade no form
     const handleCancelar = (e) => {
         e.preventDefault();
 
-        // cancelaAtividade()
+        props.cancelarAtividade();
 
         setAtividade(atividadeInicial);
     }
 
     // Estrutura do formulário
     return (
-        <form className="bg-slate-50 p-5 shadow-lg">
+        <form className="bg-slate-50 p-5 shadow-lg" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2">
                 <div className="w-full max-w-lg px-5 grid">
                     <label className="text-slate-500">Título:</label>

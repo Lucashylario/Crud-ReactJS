@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 import { AtividadeForm } from "./steps/AtividadeForm";
-import { AtividadeCard } from "./steps/AtividadeCard";
+// import { AtividadeCard } from "./steps/AtividadeCard";
 import AtividadeLista from "./steps/AtividadeLista";
+import { useEffect } from "react";
 
 // Dados da lista de atividades importado pelo useStates:
 let initialState = [
@@ -27,9 +28,15 @@ let initialState = [
 ]
 
 export const Atividade = () => {
+    const [index, setIndex] = useState(0);
     const [atividades, setAtividades] = useState(initialState);
-    const [atividade, setAtividade] = useState({});
-    
+    const [atividade, setAtividade] = useState({id: 0});
+   
+    useEffect(() => {
+        atividades.length <= 0 ? setIndex(1) : 
+        setIndex(Math.max.apply(Math, atividades.map((item) => item.id)) + 1)
+    }, [atividades])
+
     // Dados do header da pág de listas:
     const titleHeader = [
         {
@@ -40,19 +47,20 @@ export const Atividade = () => {
     ];
 
     // Função do botão "+ Atividade" para dicionar nova atividade na lista
-    function addAtividade(e) {
-        e.preventDefault();
-        const atividade = { // Constante para adicionar novo objeto. O objeto deve conter os mesmos dados da lista de atividades
-            id: Math.max.apply(Math, atividades.map(item => item.id)) + 1,
-            prioridade: document.getElementById('prioridade').value, // Importar id do input "prioridade" 
-            titulo: document.getElementById('titulo').value, // Importar id do input "titulo" 
-            descricao: document.getElementById('descricao').value, // Importar id do input "Descrição" 
-        }
+    function addAtividade(ativ) {  
+        ativ.preventDefault();     
+        setAtividades([...atividades, {...ativ, id: index}]); //[...spread operator] https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+    }
 
-        // console.log(atividades);
+    // Função para cancelar edição da atividade no form
+    function cancelarAtividade() {
+        setAtividade({id: 0});
+    }
 
-        // Importa itens já existentes na lista de atividades adiciona nova atividade quando clicado no botão "+ Atividade"
-        setAtividades([...atividades, {...atividade}]); //[...spread operator] https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+    // Função para atualizar edição da atividade
+    function atualizarAtividade(ativ) {
+        setAtividades(atividades.map(item => item.id === ativ.id ? ativ : item));
+        setAtividade({id: 0});
     }
 
     // Função para o botão de deletar atividade
@@ -81,6 +89,8 @@ export const Atividade = () => {
             <div className="p-10 max-w-6xl mx-auto">
                 <AtividadeForm 
                     addAtividade={addAtividade}
+                    cancelarAtividade={cancelarAtividade}
+                    atualizarAtividade={atualizarAtividade}
                     ativSelecionada={atividade}
                     atividades={atividades}
                 />

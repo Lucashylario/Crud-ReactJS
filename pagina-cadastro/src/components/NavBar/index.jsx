@@ -1,12 +1,16 @@
+import { FaClipboardList, FaHouseUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { Logo } from "./step/Logo";
 
 export const NavBar = () => {
 
     return (
-        <div className="w-72 bg-slate-900 flex justify-end">
-            <nav className='h-screen text-3xl text-slate-100 bg-slate-900 font-semibold pl-5 pt-14 fixed'>
-                <a className="block mb-2 hover:text-slate-50 hover:bg-slate-500 py-3 pl-4 pr-10 rounded-l-xl" href="/">Inicio</a>
-                <a className="block mb-2 hover:text-slate-50 hover:bg-slate-500 py-3 pl-4 pr-10 rounded-l-xl" href="/atividades">Atividades</a>
-            </nav>
-        </div>
+        <nav className="w-72 bg-black float-left flex justify-center">
+            <Logo />
+            <div className='text-xl text-zinc-100  mt-28 fixed flex flex-col gap-2'>
+                <Link className="flex items-center gap-2 bg-zinc-900 border border-zinc-700 hover:text-zinc-50 hover:bg-zinc-700 hover:border hover:border-lime-500 py-2 px-10 rounded-md" to="/"><FaHouseUser className="w-6" /> Inicio</Link>
+                <Link className="flex items-center gap-2 bg-zinc-900 border border-zinc-700 hover:text-zinc-50 hover:bg-zinc-700 hover:border hover:border-lime-500 py-2 px-10 rounded-md" to="/atividades"><FaClipboardList className="w-6" /> Atividades</Link>
+            </div>
+        </nav>
     )
 }

@@ -3,7 +3,7 @@ import { NavBar } from "../../components/NavBar"
 
 export const AtividadePage = () => {
     return (
-        <div className="bg-slate-200 flex">
+        <div className="flex bg-slate-200">
             <NavBar />
             <Atividade />
         </div>
